@@ -117,7 +117,8 @@ async def _groq_polish(verdict: str, signals: list[dict], template: str) -> str:
             ),
             timeout=GROQ_TIMEOUT_S,
         )
-        polished = response.choices[0].message.content.strip()
+        content = response.choices[0].message.content or ""
+        polished = content.strip()
         # Sanitise — remove any markdown leftovers
         polished = re.sub(r"\*+", "", polished)
         return polished if polished else template
@@ -155,7 +156,7 @@ async def fuse_and_explain(all_outputs: dict) -> dict:
     sev_msg = {
         "Safe": "safe", "Suspicious": "suspicious", "High Risk": "high"
     }.get(all_outputs.get("message_classifier", {}).get("label", "Safe"), "safe")
-    sev_qr  = all_outputs.get("qr_decoder", {}).get("severity", "safe")
+    sev_qr = all_outputs.get("qr_decoder", {}).get("severity", "safe")
     sev_upi = all_outputs.get("upi_checker", {}).get("severity", "safe")
 
     raw_severity = _max_severity(sev_ext, sev_url, sev_msg, sev_qr, sev_upi)

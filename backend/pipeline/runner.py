@@ -30,10 +30,10 @@ async def run_pipeline(payload: dict) -> AsyncGenerator[dict, None]:
         qr_image: bytes     — raw QR image bytes
         upi_id: str         — UPI ID to validate
     """
-    text:      str   = payload.get("text", "")
-    url:       str   = payload.get("url", "")
-    qr_image:  bytes = payload.get("qr_image", b"")
-    upi_id:    str   = payload.get("upi_id", "")
+    text: str = payload.get("text", "")
+    url: str = payload.get("url", "")
+    qr_image: bytes = payload.get("qr_image", b"")
+    upi_id: str = payload.get("upi_id", "")
 
     all_outputs: dict = {}
 

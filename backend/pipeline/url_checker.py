@@ -6,7 +6,6 @@ Optional WHOIS / PhishTank lookups behind ENABLE_LIVE_LOOKUPS flag with 2s timeo
 """
 from __future__ import annotations
 
-import asyncio
 import logging
 import re
 from urllib.parse import urlparse
@@ -20,7 +19,7 @@ from backend.seed_data import (
     URL_SHORTENERS,
     HOMOGLYPH_MAP,
 )
-from backend.config import ENABLE_LIVE_LOOKUPS, GROQ_TIMEOUT_S
+from backend.config import GROQ_TIMEOUT_S
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +47,6 @@ def _typosquat_score(domain: str) -> tuple[int, list[str]]:
     for legit in LEGIT_BRAND_DOMAINS:
         legit_domain = legit.split(".")[0]  # e.g. "sbi"
         dist = levenshtein_distance(normalized, legit_domain)
-        similarity = 1 - dist / max(len(normalized), len(legit_domain), 1)
         if dist == 0:
             break  # exact match → legit
         elif dist <= 2 and len(domain) >= 3:
@@ -69,10 +67,10 @@ async def _live_lookup(url: str) -> tuple[int, list[str]]:
     reasons: list[str] = []
     try:
         import httpx
-        async with httpx.AsyncClient(timeout=GROQ_TIMEOUT_S) as client:
-            # PhishTank API (free, no key for GET-based check simulation)
-            # In production: POST to checkurl API
-            pass
+        _ = GROQ_TIMEOUT_S
+        _ = httpx
+        # PhishTank API (free, no key for GET-based check simulation)
+        # In production: POST to checkurl API
     except Exception as exc:
         logger.warning("Live lookup failed, disabling: %s", exc)
     return score, reasons

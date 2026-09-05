@@ -7,3 +7,6 @@ tldextract
 python-Levenshtein
 httpx
 python-multipart
+pyzbar
+pillow
+

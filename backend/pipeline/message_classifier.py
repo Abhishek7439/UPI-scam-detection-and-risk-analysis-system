@@ -111,7 +111,8 @@ async def classify_message(text: str, entities: dict) -> dict:
             timeout=GROQ_TIMEOUT_S,
         )
 
-        raw = response.choices[0].message.content.strip()
+        content = response.choices[0].message.content or ""
+        raw = content.strip()
         # Extract JSON even if wrapped in markdown code fences
         json_match = re.search(r"\{.*\}", raw, re.DOTALL)
         if json_match:
