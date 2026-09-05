@@ -73,6 +73,8 @@
 
 ### **Hybrid AI + Heuristic Intelligence Pipeline**
 
+![SentinelPay Advanced Threat Detection Pipeline](docs/images/sentinelpay_pipeline_stages_diagram.jpg)
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                        SENTINELPAY RISK PIPELINE                        │
@@ -101,7 +103,9 @@
 
 ## 🔄 Slide 7: Workflow
 
-### **End-to-End Execution Sequence**
+### **End-to-End System Workflow Architecture**
+
+![SentinelPay System Architecture & Workflow Diagram](docs/images/sentinelpay_workflow_diagram.jpg)
 
 ```mermaid
 sequenceDiagram

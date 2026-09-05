@@ -11,7 +11,9 @@ By combining computer vision, deep NLP/LLM classification (powered by Groq `llam
 
 ---
 
-## 🏛️ System Architecture
+## 🏛️ System Architecture & Workflow
+
+![SentinelPay System Architecture & Workflow Diagram](docs/images/sentinelpay_workflow_diagram.jpg)
 
 ```
                                   +---------------------------------------+
@@ -54,6 +56,12 @@ By combining computer vision, deep NLP/LLM classification (powered by Groq `llam
                                   | Real-Time SSE Stream back to Client   |
                                   +---------------------------------------+
 ```
+
+---
+
+## 🔬 5-Stage Advanced Threat Detection Pipeline
+
+![SentinelPay Advanced Threat Detection Pipeline](docs/images/sentinelpay_pipeline_stages_diagram.jpg)
 
 ---
 
